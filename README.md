@@ -4,9 +4,6 @@ This project demonstrates a **humanoid robotic hand controlled in real time by h
 
 A webcam tracks my hand movements, Python interprets the gestures, and an ESP32 drives multiple servos to mirror those motions on a 3D-printed robotic hand.
 
-Less than a year ago, I didn’t know how to build systems like this — finishing this project felt like a small dream come true. 
-There’s still a lot of room for improvement, and I’m excited to keep building.
-
 ## Demo
 
 **YouTube demo:** *link will be added soon*  
