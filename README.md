@@ -1,4 +1,4 @@
-# 🤖 Hand Gesture Controlled Humanoid Robotic Hand
+# Hand Gesture Controlled Humanoid Robotic Hand
 
 This project demonstrates a **humanoid robotic hand controlled in real time by human hand gestures** using computer vision and embedded systems.
 
@@ -7,13 +7,13 @@ A webcam tracks my hand movements, Python interprets the gestures, and an ESP32 
 Less than a year ago, I didn’t know how to build systems like this — finishing this project felt like a small dream come true. 
 There’s still a lot of room for improvement, and I’m excited to keep building.
 
-## ✨ Demo
+## Demo
 
-📹 **YouTube demo:** *link will be added soon*  
-🖼️ **Media:** GIFs and images will be added here soon.
+**YouTube demo:** *link will be added soon*  
+**Media:** GIFs and images will be added here soon.
 
 
-## 🧠 How It Works (High Level)
+## How It Works (High Level)
 
 ### Pipeline
 1. Webcam captures live video  
@@ -26,7 +26,7 @@ Python sends **high-level intent** (finger positions),
 while the ESP32 handles **precise motor control**.
 
 
-## 🧩 Hardware
+## Hardware
 
 - ESP32 (Arduino framework)
 - PCA9685 16-channel servo driver (I2C)
@@ -43,7 +43,7 @@ while the ESP32 handles **precise motor control**.
 I plan to separate them in a future revision.*
 
 
-## 💻 Software
+## Software
 
 ### Python (runs on computer)
 - Python 3.9+
