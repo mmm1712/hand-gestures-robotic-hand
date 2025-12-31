@@ -10,7 +10,7 @@ A webcam tracks my hand movements, Python interprets the gestures, and an ESP32 
 **Media:** GIFs and images will be added here soon.
 
 
-## How It Works (High Level)
+## How It Works
 
 ### Pipeline
 1. Webcam captures live video  
