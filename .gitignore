@@ -1,15 +1,5 @@
-# macOS
 .DS_Store
-
-# Python
 __pycache__/
 *.pyc
-.venv/
+.env
 
-# Arduino
-*.elf
-*.hex
-
-# Media
-*.mov
-*.mp4
