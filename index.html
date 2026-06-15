@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Robotic Hand</title>
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="index.css">
+    <script src="gsap.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="header-nav">
+        <a href="#" id="logo-refresh" class="logo">Hand Gesture Robotic Hand</a>
+        <div class="nav-links" id="nav-links">
+            <a href="#demo" class="nav-link">Demo</a>
+            <a href="#bom" class="nav-link">BOM</a>
+            <a href="#assembly" class="nav-link">Assembly</a>
+            <a href="#software" class="nav-link">Software</a>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: center; z-index: 101;">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path class="sun-path" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </button>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path id="menu-icon-path" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Hand Gesture Robotic Hand</h1>
+            <p class="hero-subtitle">A brilliant open-source project by Marina (@mmm1712). Track your hand with a webcam, and watch a 3D-printed robotic arm mirror your movements in real-time.</p>
+            <div class="hero-cta">
+                <a href="https://github.com/mmm1712/hand-gestures-robotic-hand" target="_blank" class="btn primary-btn">Original Repo</a>
+                <a href="https://www.youtube.com/@Marinmandarine" target="_blank" class="btn secondary-btn">YouTube</a>
+                <a href="https://github.com/MaxSikorski/hand-gestures-robotic-hand" target="_blank" class="btn secondary-btn">Max's Repo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="content-section">
+        
+        <!-- Demo -->
+        <section id="demo" style="margin-bottom: 80px;">
+            <div class="section-label">Project Demo</div>
+            <div class="card" style="display: block;">
+                <h3 class="card-title">See it in action</h3>
+                <p class="card-desc" style="margin-bottom: 16px;">Watch Marina's original demonstration to see the computer vision pipeline and the robotic hand working together.</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/_GSqwtdkvcs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOM -->
+        <section id="bom" style="margin-bottom: 80px;">
+            <div class="section-label">1. Bill of Materials</div>
+            
+            <div class="card" style="display: block;">
+                <h3 class="card-title">3D Printed Parts</h3>
+                <p class="card-desc">The hand itself is based on an existing open-source model. Grab the STL files for the fingers, palm, and wrist mounting directly from Thingiverse:</p>
+                <ul>
+                    <li><strong>Model:</strong> <a href="https://www.thingiverse.com/thing:2269115" target="_blank">Robotic Hand by Ryan Gross</a></li>
+                    <li><strong>Creator:</strong> Ryan Gross (grossrc)</li>
+                </ul>
+            </div>
+
+            <div class="card" style="display: block;">
+                <h3 class="card-title">Electronics & Hardware</h3>
+                <ul>
+                    <li><strong>ESP32 Microcontroller</strong> (e.g., ESP32 WROOM-32 DevKit)</li>
+                    <li><strong>PCA9685</strong> 16-channel PWM/servo driver (I2C)</li>
+                    <li><strong>4x Servo Motors</strong> (MG996R or SG90)</li>
+                    <li><strong>Webcam</strong> (Built-in or USB)</li>
+                    <li><strong>Power Supply:</strong> External 5V - 6V, roughly 3 amps or more (confirm against your servos' rating).</li>
+                    <li><strong>Tendons:</strong> Fishing line or braided thread, and elastic cord for the return tension.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Assembly -->
+        <section id="assembly" style="margin-bottom: 80px;">
+            <div class="section-label">2. Hardware Assembly</div>
+            
+            <div class="card" style="display: block;">
+                <h3 class="card-title">The Physical Build</h3>
+                <p class="card-desc" style="margin-bottom: 16px;">Before touching the electronics, put the 3D-printed hand together. This YouTube assembly video shows exactly how to string the tendons and place the servos.</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/L2ddw3MQl9g" title="Assembly Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="card" style="display: block;">
+                <h3 class="card-title">Wiring the Electronics</h3>
+                <p class="card-desc">The PCA9685 talks to the ESP32 over I2C. Connect them as follows:</p>
+                <table class="data-table">
+                    <thead><tr><th>PCA9685 Pin</th><th>ESP32 Pin</th></tr></thead>
+                    <tbody>
+                        <tr><td>VCC</td><td>3.3V</td></tr>
+                        <tr><td>GND</td><td>GND</td></tr>
+                        <tr><td>SDA</td><td>GPIO 21</td></tr>
+                        <tr><td>SCL</td><td>GPIO 22</td></tr>
+                    </tbody>
+                </table>
+                <p class="card-desc">Plug the four servos into the PCA9685, matching the channels defined in the firmware: <strong>Ch 0</strong> (Middle), <strong>Ch 1</strong> (Thumb), <strong>Ch 2</strong> (Ring + Pinky shared), and <strong>Ch 3</strong> (Index).</p>
+                <p class="card-desc" style="margin-top: 16px; opacity: 1;">⚠️ Do not power the servos directly from the ESP32's 5V pin. Connect your external 5V/6V power supply directly to the V+ and GND screw terminals on the PCA9685. Tie the ESP32 GND and the PCA9685 GND together.</p>
+            </div>
+        </section>
+
+        <!-- Software -->
+        <section id="software" style="margin-bottom: 80px;">
+            <div class="section-label">3. Software Setup</div>
+
+            <div class="card" style="display: block;">
+                <h3 class="card-title">Flashing the ESP32</h3>
+                <ol style="margin-left: 20px; font-size: 0.9rem; opacity: 0.85;">
+                    <li>Install the <a href="https://www.arduino.cc/en/software" target="_blank">Arduino IDE</a>.</li>
+                    <li>Add ESP32 boards to the Boards Manager.</li>
+                    <li>Install the <strong>Adafruit PWM Servo Driver Library</strong>.</li>
+                    <li>Open the <code>.ino</code> file in the <code>esp32/</code> folder of the repo.</li>
+                    <li>Plug in your ESP32, pick the right COM port, and upload.</li>
+                </ol>
+            </div>
+
+            <div class="card" style="display: block;">
+                <h3 class="card-title">Running the Python Tracker</h3>
+                <p class="card-desc">The Python script uses MediaPipe to track your hand and sends serial commands to the ESP32.</p>
+                <div class="code-block">python -m venv venv
+source venv/bin/activate
+pip install opencv-python mediapipe pyserial</div>
+                <p class="card-desc">Update the script with your ESP32's COM port, and run it:</p>
+                <div class="code-block">python hand_test.py</div>
+                <p class="card-desc">Hold your hand up to the webcam, and watch the robot mirror your movements!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>This project was created by <a href="https://github.com/mmm1712" target="_blank">Marina (@mmm1712)</a>.</p>
+        <p style="margin-top: 8px;">Documentation website designed and contributed by <a href="https://github.com/MaxSikorski" target="_blank">Max Sikorski</a>.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Offline safety net: GSAP is vendored locally (gsap.min.js), but if it ever
+        // fails to load, reveal everything that starts hidden and stub out the animation
+        // calls so the page stays fully functional and never renders blank.
+        if (typeof gsap === "undefined") {
+            document.querySelectorAll(".hero-title, .hero-subtitle, .hero-cta, .card, .section-label")
+                .forEach(el => { el.style.opacity = 1; el.style.transform = "none"; });
+            const noop = () => api;
+            const api = { to: noop, from: noop, fromTo: noop, set: noop, timeline: () => api, restart: noop };
+            window.gsap = api;
+        }
+
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+        const menuIconPath = document.getElementById("menu-icon-path");
+
+        const hamburgerPath = "M4 6h16M4 12h16M4 18h16";
+        const closePath = "M6 6l12 12M6 18L18 6";
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener("click", () => {
+                const isOpen = navLinks.classList.toggle("open");
+                menuIconPath.setAttribute("d", isOpen ? closePath : hamburgerPath);
+
+                if (isOpen) {
+                    gsap.fromTo(navLinks, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" });
+                    gsap.fromTo(".nav-links .nav-link", { opacity: 0, y: 20 },
+                        { opacity: 0.85, y: 0, duration: 0.5, ease: "power4.out", stagger: 0.08 });
+                }
+            });
+            
+            // Close menu on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('open')) {
+                        navLinks.classList.remove('open');
+                        menuIconPath.setAttribute("d", hamburgerPath);
+                    }
+                });
+            });
+
+            // Close menu when clicking outside (on the blurred background)
+            navLinks.addEventListener('click', (e) => {
+                if (e.target === navLinks && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    menuIconPath.setAttribute("d", hamburgerPath);
+                }
+            });
+        }
+
+        // Dark/Light Theme Toggle
+        const themeBtn = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+
+        const sunPath = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z";
+        const moonPath = "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z";
+
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+        const savedTheme = localStorage.getItem("theme");
+        let isDark = savedTheme ? savedTheme === "dark" : prefersDark.matches;
+
+        const applyTheme = (dark, animate = true) => {
+            document.body.setAttribute("data-theme", dark ? "dark" : "light");
+            localStorage.setItem("theme", dark ? "dark" : "light");
+
+            const metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.content = dark ? "#000000" : "#f5f5f7";
+
+            const pathNode = themeIcon.querySelector("path");
+            pathNode.setAttribute("d", dark ? sunPath : moonPath);
+
+            if (animate) {
+                gsap.fromTo(themeIcon,
+                    { rotation: 0, scale: 0.8 },
+                    { rotation: 360, scale: 1, duration: 0.6, ease: "power2.out" }
+                );
+            }
+        };
+
+        applyTheme(isDark, false);
+
+        themeBtn.addEventListener("click", () => { isDark = !isDark; applyTheme(isDark); });
+        prefersDark.addEventListener("change", (e) => { isDark = e.matches; applyTheme(isDark, true); });
+
+        // Hero Entrance Animation
+        const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
+        tl.to(".hero-title", { opacity: 1, y: 0, delay: 0.2 })
+          .to(".hero-subtitle", { opacity: 1, y: 0 }, "-=0.9")
+          .to(".hero-cta", { opacity: 1, y: 0 }, "-=0.9");
+
+        document.getElementById("logo-refresh").addEventListener("click", (e) => {
+            if(window.scrollY === 0) {
+                e.preventDefault();
+                gsap.set(".hero-title, .hero-subtitle, .hero-cta", { opacity: 0, y: 30 });
+                tl.restart();
+            }
+        });
+
+        // Scroll Reveals
+        const cards = document.querySelectorAll(".card");
+        const sectionLabels = document.querySelectorAll(".section-label");
+
+        gsap.set(cards, { opacity: 0, y: 20 });
+        gsap.set(sectionLabels, { opacity: 0 });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    if (el.classList.contains("section-label")) {
+                        gsap.to(el, { opacity: 1, duration: 0.6, ease: "power4.out" });
+                    } else if (el.classList.contains("card")) {
+                        gsap.to(el, { opacity: 1, y: 0, duration: 0.8, ease: "power4.out", delay: el.dataset.delay || 0 });
+                    }
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach((card, i) => { card.dataset.delay = i * 0.1; observer.observe(card); });
+        sectionLabels.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
